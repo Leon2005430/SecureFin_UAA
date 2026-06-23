@@ -39,7 +39,8 @@ def login():
 
         # OWASP ASVS V5.3 - Injection Prevention
         # Parameterized query prevents SQL Injection attacks
-        cursor.execute( "SELECT username,password,role FROM users WHERE username=?", (username,))
+        cursor.execute( "SELECT username,password,role FROM users WHERE username=?"
+                       , (username,))
 
         user = cursor.fetchone()
 
@@ -116,8 +117,8 @@ def register():
         if password != confirm_password:
             return "Passwords do not match"
         
-# OWASP ASVS V2.1 - Password Security
-# Passwords are hashed using Argon2 before storage
+        # OWASP ASVS V2.1 - Password Security
+        # Passwords are hashed using Argon2 before storage
         hashed_password = ph.hash(password)
 
         try:
@@ -125,19 +126,10 @@ def register():
             conn = sqlite3.connect("users.db")
             cursor = conn.cursor()
 
-            cursor.execute(
-                """
-                INSERT INTO users
-                (fullname, username, email, password)
-                VALUES (?, ?, ?, ?)
-                """,
-                (
-                    fullname,
-                    username,
-                    email,
-                    hashed_password
-                )
-            )
+            cursor.execute("""INSERT INTO users
+                          (fullname, username, email, password)
+                          VALUES (?, ?, ?, ?)""", 
+                          (fullname, username, email, hashed_password))
 
             conn.commit()
             conn.close()
@@ -170,11 +162,8 @@ def otp_verify():
 
     if session["otp_attempts"] >= 3:
 
-        return render_template(
-            "otp.html",
-            error="Too many failed attempts.",
-            is_locked=True
-        )
+        return render_template("otp.html", error="Too many failed attempts."
+                               , is_locked=True)
 
     if request.method == "POST":
 
@@ -198,8 +187,7 @@ def otp_verify():
             return render_template(
                 "otp.html",
                 error=f"Incorrect OTP. Remaining attempts: {remaining}",
-                is_locked=False
-            )
+                is_locked=False)
 
     return render_template(
         "otp.html",
@@ -218,10 +206,8 @@ def customer():
     if "pre_auth_user" not in session:
         return redirect("/login")
 
-    return render_template(
-        "customer.html",
-        username=session["pre_auth_user"]
-    )
+    return render_template("customer.html",
+                           username=session["pre_auth_user"])
 
 
 # -----------------------
@@ -236,9 +222,7 @@ def logout():
         
         # OWASP ASVS V7 - Logging and Monitoring
         # Security events are recorded for audit and monitoring purposes
-        write_log(
-            f"LOGOUT : {session['pre_auth_user']}"
-        )
+        write_log( f"LOGOUT : {session['pre_auth_user']}")
     
     # OWASP ASVS V3 - Session Termination
     # Session data is destroyed upon logout
