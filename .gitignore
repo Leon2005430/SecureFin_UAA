@@ -1,0 +1,7 @@
+__pycache__/
+users.db
+audit.log
+
+git add .
+git commit -m "Add gitignore"
+git push
