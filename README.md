@@ -88,7 +88,7 @@ A random six-digit OTP is generated after successful login and displayed in the 
 ---
 
 ## Project Structure
-
+```text
 SecureFin/
 
 ├── app.py              # Main Flask application: registration, login, OTP, RBAC, session handling and audit logging
@@ -108,3 +108,4 @@ SecureFin/
 ├── templates/          # HTML pages such as login, register, OTP, customer, admin and denied pages
 
 └── static/             # CSS, images and other static files
+```
