@@ -12,7 +12,7 @@ The project was developed as part of the Secure Software Systems coursework to d
 
 * User Registration
 * Secure Login Authentication
-* Password Hashing using Argon2
+* Password Hashing using Argon2id
 * Multi-Factor Authentication (OTP)
 * Session Management
 * Role-Based Access Control (RBAC)
@@ -27,7 +27,7 @@ The project was developed as part of the Secure Software Systems coursework to d
 * Python 3
 * Flask
 * SQLite3
-* Argon2 Password Hasher
+* Argon2id Password Hasher
 * HTML5
 * CSS3
 * Bootstrap 5
@@ -52,6 +52,8 @@ This will generate:
 
 users.db
 
+Note: users.db is generated locally for testing and is not committed to GitHub.
+
 ---
 
 ## Running the Application
@@ -75,7 +77,7 @@ A random six-digit OTP is generated after successful login and displayed in the 
 ## Security Controls Implemented
 
 1. Input Validation
-2. Secure Password Storage (Argon2)
+2. Secure Password Storage (Argon2id)
 3. Parameterized Queries
 4. Multi-Factor Authentication (OTP)
 5. Session Management
@@ -88,41 +90,12 @@ A random six-digit OTP is generated after successful login and displayed in the 
 ## Project Structure
 
 SecureFin/
-
-├── app.py
-
-├── create_db.py
-
-├── users.db
-
-├── audit.log
-
-├── requirements.txt
-
-├── README.md
-
-├── templates/
-
-│   ├── login.html
-
-│   ├── register.html
-
-│   ├── otp.html
-
-│   ├── customer.html
-
-│   ├── admin.html
-
-│   └── denied.html
-
-└── static/
-
-```
-├── css/
-
-│   └── style.css
-
-└── images/
-
-    └── logo.png
-```
+├── app.py              # Main Flask application: registration, login, OTP, RBAC, session handling and audit logging
+├── create_db.py        # Creates the SQLite database
+├── make_admin.py       # Creates or sets up the admin account
+├── audit.log           # Stores authentication and security event logs
+├── requirements.txt    # Lists the Python packages needed to run the application
+├── README.md           # Explains setup, running steps and security notes
+├── .gitignore          # Excludes unnecessary local files from GitHub
+├── templates/          # HTML pages such as login, register, OTP, customer, admin and denied pages
+└── static/             # CSS, images and other static files
