@@ -90,6 +90,7 @@ A random six-digit OTP is generated after successful login and displayed in the 
 ## Project Structure
 
 SecureFin/
+
 ├── app.py              # Main Flask application: registration, login, OTP, RBAC, session handling and audit logging
 
 ├── create_db.py        # Creates the SQLite database
