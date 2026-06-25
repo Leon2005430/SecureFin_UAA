@@ -91,11 +91,19 @@ A random six-digit OTP is generated after successful login and displayed in the 
 
 SecureFin/
 ├── app.py              # Main Flask application: registration, login, OTP, RBAC, session handling and audit logging
+
 ├── create_db.py        # Creates the SQLite database
+
 ├── make_admin.py       # Creates or sets up the admin account
+
 ├── audit.log           # Stores authentication and security event logs
+
 ├── requirements.txt    # Lists the Python packages needed to run the application
+
 ├── README.md           # Explains setup, running steps and security notes
+
 ├── .gitignore          # Excludes unnecessary local files from GitHub
+
 ├── templates/          # HTML pages such as login, register, OTP, customer, admin and denied pages
+
 └── static/             # CSS, images and other static files
