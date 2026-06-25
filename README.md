@@ -87,6 +87,32 @@ A random six-digit OTP is generated after successful login and displayed in the 
 
 ---
 
+## Security-Relevant Configuration
+
+### Key Storage
+
+The Flask secret key used to sign session cookies is configured in `app.py` for local academic prototype testing. In a production environment, the secret key should not be hard-coded in the source code. It should be stored securely using environment variables or a dedicated key management service.
+
+### Environment Variables
+
+This prototype runs without environment variable configuration because it uses SQLite for local testing. In a production deployment, sensitive values such as secret keys, database paths, and security settings should be stored as environment variables instead of being placed directly in the source code.
+
+### TLS / HTTPS
+
+The prototype runs locally over HTTP at:
+
+```text
+http://127.0.0.1:5000
+```
+
+This is suitable for local testing only. In production, HTTPS/TLS should be enabled to protect usernames, passwords, OTP values, and session cookies during transmission.
+
+### Session Management
+
+The application uses Flask's built-in session handling for the academic prototype. In production, session cookies should be configured with `HttpOnly`, `Secure`, and `SameSite` attributes to reduce the risk of session theft and cross-site request forgery (CSRF).
+
+---
+
 ## Project Structure
 ```text
 SecureFin/
